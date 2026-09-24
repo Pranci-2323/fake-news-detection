@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TruthCheck - Fake News Detector</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="background">
+
+        <div class="container">
+
+            <div class="logo">📰</div>
+
+            <h1>Truth<span>Check</span></h1>
+
+            <p class="subtitle">
+                 Fake News Detection
+            </p>
+
+            <p class="description">
+                Paste a news article below and let our machine learning
+                model analyze whether it is likely to be real or fake.
+            </p>
+
+            <form method="POST">
+
+                <textarea
+                    name="news"
+                    placeholder="Paste your news article here..."
+                    required></textarea>
+
+                <button type="submit">
+                    🔍 Check News
+                </button>
+
+            </form>
+
+
+            {% if prediction %}
+
+            <div class="result
+                {% if prediction == 'REAL NEWS' %}
+                    real
+                {% else %}
+                    fake
+                {% endif %}">
+
+                {% if prediction == "REAL NEWS" %}
+                    <div class="result-icon">✅</div>
+                {% else %}
+                    <div class="result-icon">⚠️</div>
+                {% endif %}
+
+                <h2>{{ prediction }}</h2>
+
+                <p>
+                    Model Probability:
+                    <strong>{{ probability }}%</strong>
+                </p>
+
+            </div>
+
+            {% endif %}
+
+
+            <div class="info">
+
+                <div>
+                    <span>🤖</span>
+                    <p>Machine Learning</p>
+                </div>
+
+                <div>
+                    <span>📊</span>
+                    <p>TF-IDF Analysis</p>
+                </div>
+
+                <div>
+                    <span>⚡</span>
+                    <p>Fast Prediction</p>
+                </div>
+
+            </div>
+
+            <footer>
+                Fake News Detection Project • Built with Python & Flask
+            </footer>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
